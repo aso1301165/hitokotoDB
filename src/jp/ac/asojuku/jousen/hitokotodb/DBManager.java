@@ -66,11 +66,25 @@ public class DBManager extends SQLiteOpenHelper {
 		return cursor;
 	}
 
+	public SQLiteCursor selectJob(SQLiteDatabase db){
+		String sql = "select j.name from player p, job j where p.job_id = j.job_id and p.player_id = 1 order by player_id";
+
+		SQLiteCursor cursor = (SQLiteCursor)db.rawQuery(sql, null);
+
+		return cursor;
+	}
+
 	public void insertJobAtk(SQLiteDatabase db){
 
 		String sql = "update player set job_id = 1 where player_id = 1";
 		db.execSQL(sql);
 
+	}
+
+	public void insertJobMag(SQLiteDatabase db){
+
+		String sql = "update player set job_id = 2 where player_id = 1";
+		db.execSQL(sql);
 
 	}
 

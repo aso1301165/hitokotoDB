@@ -2,6 +2,7 @@ package jp.ac.asojuku.jousen.hitokotodb;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +20,23 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		dbm = new DBManager(this);
+		sqlDB = dbm.getWritableDatabase();
+
+		SQLiteCursor cursor_p = null;
+
+		cursor_p = dbm.selectPlayer(sqlDB);
+
+		cursor_p.moveToFirst();
+
+		String name = cursor_p.getString(cursor_p.getColumnIndex("name"));
+
+		if(!name.equals("")){
+			Intent intent = new Intent(MainActivity.this, TopActivity.class);
+			startActivity(intent);
+		}
+
 	}
 
 	@Override

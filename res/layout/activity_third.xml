@@ -33,17 +33,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="73dp"
-            android:text="OK" />
+            android:text="はい" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonCansel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/linearLayout1"
+        android:layout_toRightOf="@+id/linearLayout1"
+        android:text="いいえ" />
 
     <TextView
         android:id="@+id/textView_kakunin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/linearLayout1"
+        android:layout_above="@+id/buttonCansel"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp"
-        android:text="これでよろしいですか？" />
+        android:layout_marginBottom="28dp"
+        android:text="これでよろしいですか？"
+        android:textSize="20sp" />
 
 </RelativeLayout>

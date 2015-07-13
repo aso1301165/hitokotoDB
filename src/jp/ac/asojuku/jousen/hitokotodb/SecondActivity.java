@@ -48,6 +48,19 @@ public class SecondActivity extends Activity {
 
 			}
 		});
+
+		Button job_m = (Button)findViewById(R.id.button_magic);
+		job_m.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO 自動生成されたメソッド・スタブ
+				dbm.insertJobMag(sqlDB);
+
+				Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 }
