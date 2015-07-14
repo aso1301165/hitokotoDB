@@ -19,7 +19,7 @@ public class DBManager extends SQLiteOpenHelper {
 	 */
 
 	public DBManager(Context context){
-		super(context, "rpg.sqlite3", null, 1);
+		super(context, "rpg.sqlite3", null, 2);
 	}
 
 	@Override
@@ -27,7 +27,11 @@ public class DBManager extends SQLiteOpenHelper {
 		// TODO 自動生成されたメソッド・スタブ
 
 		db.execSQL("create table if not exists player(player_id integer primary key autoincrement, name text, job_id integer)");
+		db.execSQL("insert into Player (player_id) values (1)");
+
 		db.execSQL("create table if not exists job(job_id integer primary key autoincrement, name text, hp integer, atk integer, mag integer)");
+		db.execSQL("insert into job (name, hp, atk, mag) values ('戦士', " + 150 + ", " + 15 + ", " + 20 + ")");
+		db.execSQL("insert into job (name, hp, atk, mag) values ('魔導士', " + 100 + ", " + 10 + ", " + 1000 + ")");
 	}
 
 	/* (非 Javadoc)
@@ -46,12 +50,21 @@ public class DBManager extends SQLiteOpenHelper {
 		db.execSQL(sql, new String[]{inputName});
 	}
 
+	public void updateName(SQLiteDatabase db, String inputName){
+
+		String sql = "update player set name = (?) where player_id = 1";
+		db.execSQL(sql, new String[]{inputName});
+	}
+
 	public void deletePlayer(SQLiteDatabase db){
 		String sql = "drop table player";
 		db.execSQL(sql);
 		String del = "drop table job";
 		db.execSQL(del);
+
 		db.execSQL("create table if not exists player(player_id integer primary key autoincrement, name text, job_id integer)");
+		db.execSQL("insert into Player (player_id) values (1)");
+
 		db.execSQL("create table if not exists job(job_id integer primary key autoincrement, name text, hp integer, atk integer, mag integer)");
 		db.execSQL("insert into job (name, hp, atk, mag) values ('戦士', " + 150 + ", " + 15 + ", " + 20 + ")");
 		db.execSQL("insert into job (name, hp, atk, mag) values ('魔導士', " + 100 + ", " + 10 + ", " + 1000 + ")");

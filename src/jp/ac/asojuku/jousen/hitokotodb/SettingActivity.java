@@ -21,6 +21,7 @@ import android.widget.EditText;
 public class SettingActivity extends Activity {
 
     private AlertDialog.Builder alertDialog;
+    private AlertDialog.Builder Dialog;
 	private EditText edit;
 	private SQLiteDatabase sqlDB;
 	DBManager dbm;
@@ -41,6 +42,7 @@ public class SettingActivity extends Activity {
 		sqlDB = dbm.getWritableDatabase();
 
 		alertDialog = new AlertDialog.Builder(this);
+		Dialog = new AlertDialog.Builder(this);
 
 		Button btn_n = (Button)findViewById(R.id.NameChange);
 		btn_n.setOnClickListener(new View.OnClickListener() {
@@ -83,16 +85,16 @@ public class SettingActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO 自動生成されたメソッド・スタブ
-			    alertDialog.setTitle("初期化");
-			    alertDialog.setMessage("初期化しますか？");
-			    alertDialog.setPositiveButton("はい", new DialogInterface.OnClickListener() {
+			    Dialog.setTitle("初期化");
+			    Dialog.setMessage("初期化しますか？");
+			    Dialog.setPositiveButton("はい", new DialogInterface.OnClickListener() {
 			        public void onClick(DialogInterface dialog, int whichButton) {
 			            // ボタン押下時の処理
 						dbm.deletePlayer(sqlDB);
 			        	moveTaskToBack(true);
 			        }
 			    });
-			    alertDialog.setNegativeButton("いいえ", new OnClickListener() {
+			    Dialog.setNegativeButton("いいえ", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO 自動生成されたメソッド・スタブ
@@ -100,12 +102,12 @@ public class SettingActivity extends Activity {
 					}
 				});
 			    // キャンセルイベント
-			    alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			    Dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
 			        public void onCancel(DialogInterface dialog) {
 			            // キャンセルの処理
 			        }
 			    });
-			    alertDialog.show();
+			    Dialog.show();
 
 			}
 		});

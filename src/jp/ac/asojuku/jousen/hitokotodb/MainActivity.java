@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 
 		String name = cursor_p.getString(cursor_p.getColumnIndex("name"));
 
-		if(!name.equals("")){
+		if(name != null){
 			Intent intent = new Intent(MainActivity.this, TopActivity.class);
 			startActivity(intent);
 		}
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 				EditText edit = (EditText)findViewById(R.id.editText_name);
 				String name = edit.getText().toString();
 
-				if(name != null)dbm.insertName(sqlDB, name);
+				if(name != null)dbm.updateName(sqlDB, name);
 
 				edit.setText("");
 
